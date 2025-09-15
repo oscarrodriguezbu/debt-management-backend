@@ -22,8 +22,8 @@ export class AuthMiddleware {
       });
 
       if (!user) return res.status(401).json({ error: 'Invalid token - user' });
-
-      req.body.user = UserEntity.fromObject(user);
+      const returnedData = { ...UserEntity.fromObject(user), id: payload.id }
+      req.body ? req.body.user = returnedData : (req as any).user = returnedData;
 
       next();
 

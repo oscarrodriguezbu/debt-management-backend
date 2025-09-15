@@ -13,23 +13,20 @@ export class CreateDebtDto {
     const { amount, description, debtorId, creditorId } = props;
 
     if (amount === undefined || amount === null) {
-      return ['The "amount" field is required'];
+      return ['The amount field is required'];
     }
     if (typeof amount !== 'number' || isNaN(amount)) {
-      return ['The "amount" field must be numeric'];
+      return ['The amount field must be numeric'];
     }
     if (amount <= 0) {
-      return ['The "amount" field must be greater than 0'];
+      return ['The amount field must be greater than 0'];
     }
-    if (!debtorId || typeof debtorId !== 'number') {
-      return ['The "debtorId" field is required and must be a number'];
+    if (debtorId) {
+      return ['The debtorId field cannot be entered by the user'];
     }
     if (!creditorId || typeof creditorId !== 'number') {
-      return ['The "creditorId" field is required and must be a number'];
-    }
-    if (debtorId === creditorId) {
-      return ['The debtor and the creditor cannot be the same person'];
-    }
+      return ['The creditorId field is required and must be a number'];
+    }  
 
     return [
       undefined,

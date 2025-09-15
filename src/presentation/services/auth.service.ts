@@ -2,7 +2,11 @@ import { bcryptAdapter, JwtAdapter } from "../../config";
 import { prisma } from "../../postgres";
 import { CustomError, LoginUserDto, RegisterUserDto, UserEntity } from "../domain";
 
-
+interface User {
+  id: number,
+  name: string,
+  email: string,
+}
 export class AuthService {
   async findById(id: number): Promise<UserEntity> {
     const user = await prisma.user.findFirst({
@@ -35,7 +39,7 @@ export class AuthService {
       }
     });
 
-    const token = await JwtAdapter.generateToken({ id: user.id });
+    const token = await JwtAdapter.generateToken({ id: Number(user.id) });
     if (!token) throw CustomError.internalServer('Error while creating JWT');
 
     return {
@@ -59,6 +63,17 @@ export class AuthService {
     return {
       user: userEntity,
       token: token,
-    } 
+    }
+  }
+
+  async getAll(user: UserEntity): Promise<User[]> {
+    const users = await prisma.user.findMany({
+      where: { NOT: { OR: [{ id: Number(user.id) }] } },
+    });
+
+    return users.map((u) => {
+      const { password, ...userEntity } = UserEntity.fromObject(u);
+      return userEntity;
+    });
   }
 }

@@ -6,7 +6,7 @@ import { AuthService } from '../../services/auth.service';
 export class AuthController {
   constructor(
     public readonly authService: AuthService,
-  ) { }  
+  ) { }
 
   registerUser = (req: Request, res: Response) => {
     const [error, registerDto] = RegisterUserDto.create(req.body);
@@ -24,6 +24,14 @@ export class AuthController {
     this.authService.loginUser(loginUserDto!)
       .then((user) => res.json(user))
       .catch(error => CustomError.handleError(error, res));
+  }
+
+  getUsers = (req: any, res: Response) => {
+    const user = req.user;
+
+    this.authService.getAll(user)
+      .then((user) => res.json(user))
+      .catch(error => CustomError.handleError(error, res))
   }
 
 }

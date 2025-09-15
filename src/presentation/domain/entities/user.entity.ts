@@ -8,9 +8,9 @@ export class UserEntity {
     public password: string,
   ) { }
 
-  static fromObject(object: { [key: string]: any; }, isUpdate: boolean = false) {
+  static fromObject(object: { [key: string]: any; }) {
     const { id, name, email, password } = object;
-  
+
     if (!id) throw CustomError.badRequest('Missing id');
     if (!name) throw CustomError.badRequest('Missing name');
     if (!email) throw CustomError.badRequest('Missing email');

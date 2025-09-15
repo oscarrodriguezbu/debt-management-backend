@@ -10,7 +10,7 @@ export class UpdateDebtDto {
         const { amount, description, isPaid } = props;
 
         if (amount !== undefined && amount <= 0) {
-            return ['The "amount" field must be greater than 0'];
+            return ['The amount field must be greater than 0'];
         }
 
         return [

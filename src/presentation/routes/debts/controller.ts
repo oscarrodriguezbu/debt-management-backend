@@ -11,6 +11,15 @@ export class DebtsController {
       .catch(error => CustomError.handleError(error, res));
   };
 
+  getgDebtsByUserToken = async (req: any, res: Response) => {
+    const isPaid = req.query.isPaid === 'true';
+    const user = req.user;
+
+    this.debtService.getAllDebtsByUserToken(isPaid, user)
+      .then((debts) => res.json(debts))
+      .catch(error => CustomError.handleError(error, res));
+  };
+
   getDebtsByUserId = async (req: Request, res: Response) => {
     const { userId } = req.params;
     this.debtService.getByUserId(Number(userId))
@@ -21,8 +30,9 @@ export class DebtsController {
   createDebt = async (req: Request, res: Response) => {
     const [error, dto] = CreateDebtDto.create(req.body);
     if (error) return res.status(400).json({ error });
+    const user = req.body.user;
 
-    this.debtService.create(dto!)
+    this.debtService.create(dto!, user)
       .then((debt) => res.status(201).json(debt))
       .catch(error => CustomError.handleError(error, res));
   };
@@ -30,24 +40,29 @@ export class DebtsController {
   updateDebt = async (req: Request, res: Response) => {
     const { id } = req.params;
     const [error, dto] = UpdateDebtDto.create(req.body);
+    const user = req.body.user;
+
     if (error) return res.status(400).json({ error });
 
-    this.debtService.update(Number(id), dto!)
+    this.debtService.update(Number(id), dto!, user)
       .then((debt) => res.status(201).json(debt))
       .catch(error => CustomError.handleError(error, res));
   };
 
   deleteDebt = async (req: Request, res: Response) => {
     const { id } = req.params;
-    this.debtService.delete(Number(id))
+    const user = req.body.user;
+
+    this.debtService.delete(Number(id), user)
       .then((debt) => res.status(204).send())
       .catch(error => CustomError.handleError(error, res));
   };
 
   markAsPaid = async (req: Request, res: Response) => {
     const { id } = req.params;
+    const user = req.body.user;
 
-    this.debtService.markAsPaid(Number(id))
+    this.debtService.markAsPaid(Number(id), user)
       .then((debt) => res.status(201).json(debt))
       .catch(error => CustomError.handleError(error, res));
   };
