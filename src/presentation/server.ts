@@ -1,5 +1,6 @@
 import path from 'path';
 import express, { Router } from 'express';
+import cors from "cors";
 
 interface Options {
   port: number;
@@ -22,6 +23,17 @@ export class Server {
   }
 
   async start() {
+    //* Cors
+    this.app.use(cors({
+      origin: [
+        "http://localhost:3000",
+        "http://localhost:4200",
+        "http://localhost:5173",
+        "https://miapp.com"
+      ],
+      credentials: true,
+    }));
+
     //* Middlewares
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
