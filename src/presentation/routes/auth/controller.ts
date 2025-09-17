@@ -34,4 +34,12 @@ export class AuthController {
       .catch(error => CustomError.handleError(error, res))
   }
 
+  checkAuthStatus = (req: any, res: Response) => {
+    const user = req.user;
+
+    this.authService.checkAuthStatus(user)
+      .then((user) => res.json(user))
+      .catch(error => CustomError.handleError(error, res))
+  }
+
 }

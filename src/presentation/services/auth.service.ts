@@ -76,4 +76,18 @@ export class AuthService {
       return userEntity;
     });
   }
+
+  async checkAuthStatus(user: UserEntity) {
+    const existUser = await this.findById(user.id);
+    if (!existUser) throw CustomError.badRequest('User not exist');
+    const { password, id, ...userEntity } = UserEntity.fromObject(existUser);
+
+    const token = await JwtAdapter.generateToken({ id: existUser.id });
+    if (!token) throw CustomError.internalServer('Error while creating JWT');
+
+    return {
+      user: userEntity,
+      token: token,
+    }
+  }
 }
