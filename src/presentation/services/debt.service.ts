@@ -22,6 +22,7 @@ export class DebtService {
     async getAll(): Promise<DebtEntity[]> {
         const debts = await prisma.debt.findMany({
             include: this.userInclude,
+            orderBy: { updatedAt: 'desc' },
         });
 
         return debts.map(DebtEntity.fromObject);
@@ -31,6 +32,7 @@ export class DebtService {
         const debts = await prisma.debt.findMany({
             where: { OR: [{ debtorId: Number(user.id), isPaid }] },
             include: this.userInclude,
+            orderBy: { updatedAt: 'desc' },
         });
 
         return debts.map(DebtEntity.fromObject);
@@ -40,6 +42,7 @@ export class DebtService {
         const debts = await prisma.debt.findMany({
             where: { OR: [{ debtorId: userId }, { creditorId: userId }] },
             include: this.userInclude,
+            orderBy: { updatedAt: 'desc' },
         });
 
         return debts.map(DebtEntity.fromObject);

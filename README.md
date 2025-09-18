@@ -31,7 +31,7 @@ Crear una API REST (o GraphQL si prefieren) que permita:
 
 ● Debes usar PostgreSQL para almacenar usuarios y deudas. ✅
 
-● Adicionalmente, implementar una capa de caché usando DynamoDB (AWS) o Redis (simulado si no tienes AWS).
+● Adicionalmente, implementar una capa de caché usando DynamoDB (AWS) o Redis (simulado si no tienes AWS). ℹ️
 
 ### Validaciones obligatorias:
 
@@ -41,11 +41,11 @@ Crear una API REST (o GraphQL si prefieren) que permita:
 
 ### Extra (para puntos extra):
 
-● Endpoint para exportar deudas en JSON o CSV.
+● Endpoint para exportar deudas en JSON o CSV. ℹ️
 
 ● Endpoint con agregaciones (ej: “total de deudas pagadas” o “saldo pendiente”). ✅
 
-● Test Unitarios
+● Test Unitarios ℹ️
 
 
 ## 📌 Decisiones Técnicas
@@ -123,3 +123,19 @@ Crear una API REST (o GraphQL si prefieren) que permita:
 ● Esta separación mejora la escalabilidad y hace más sencillo el testing.
 
 ✅ Con estas decisiones se logra un MVP funcional y mantenible, que cumple los requisitos del enunciado y deja la base lista para agregar mejoras futuras (como capa de caché con Redis/DynamoDB o GraphQL).
+
+### Información acerca de los items que faltaron del reto: 
+
+ℹ️ Implementar una capa de caché usando DynamoDB (AWS) o Redis (simulado si no tienes AWS):
+
+No he trabajdo con esas herramientas y preferí enfocarme en lo que sé hacer muy bien. Además se maneja el caché desde el frontend con TanStack Query
+
+ℹ️ Endpoint para exportar deudas en JSON o CSV:
+
+Me faltó más tiempo, pero me enfoqué en las cosas mas importantes del reto.
+
+ℹ️ Test Unitarios:
+
+Me faltó más tiempo, pero me enfoqué en las cosas mas importantes del reto.
+
+

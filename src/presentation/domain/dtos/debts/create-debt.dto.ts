@@ -21,12 +21,17 @@ export class CreateDebtDto {
     if (amount <= 0) {
       return ['The amount field must be greater than 0'];
     }
+
+    if (description.length > 300) {
+      return ['The description field must not have more than 300 characters'];
+    }
+
     if (debtorId) {
       return ['The debtorId field cannot be entered by the user'];
     }
     if (!creditorId || typeof creditorId !== 'number') {
       return ['The creditorId field is required and must be a number'];
-    }  
+    }
 
     return [
       undefined,

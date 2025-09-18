@@ -69,6 +69,7 @@ export class AuthService {
   async getAll(user: UserEntity): Promise<User[]> {
     const users = await prisma.user.findMany({
       where: { NOT: { OR: [{ id: Number(user.id) }] } },
+      orderBy: { name: 'asc' },
     });
 
     return users.map((u) => {
