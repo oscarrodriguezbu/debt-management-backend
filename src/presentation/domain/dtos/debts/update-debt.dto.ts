@@ -13,7 +13,7 @@ export class UpdateDebtDto {
             return ['The amount field must be greater than 0'];
         }
 
-        if (description.length > 300) {
+        if (description?.length > 300) {
             return ['The description field must not have more than 300 characters'];
         }
 
