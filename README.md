@@ -9,7 +9,7 @@
 4. Reconstruir el prisma client `npm run prisma:migrate:prod`
 5. Abrir postman y probar a partir de la url base: `http://localhost:3000/api/`
 6. (Opcional): Acceder a la base de datos con la data que se encuentra en el archivo .env
-7. Abrir el frontend: `http://localhost:3000`
+7. Abrir el frontend: `http://localhost:3000` o clonar, configurar y correr el repostitorio del frontend `https://github.com/oscarrodriguezbu/debt-management-frontend`
 
 ## Contexto del reto:
 
