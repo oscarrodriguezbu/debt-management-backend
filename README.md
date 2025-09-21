@@ -3,13 +3,14 @@
 ## Instrucciones de despliegue local
 ⚠️ Requiere Node v+18, Docker Desktop, Postman y opcional (TablePlus o DBeaber)
 
-1. Clonar el .env.template y crear el .env
-2. Ejecutar `npm install` para instalar las dependencias
-3. Ejecutar el comando `docker compose up -d`
-4. Reconstruir el prisma client `npm run prisma:migrate:prod`
-5. Abrir postman y probar a partir de la url base: `http://localhost:3000/api/`
-6. (Opcional): Acceder a la base de datos con la data que se encuentra en el archivo .env
-7. Abrir el frontend: `http://localhost:3000` o clonar, configurar y correr el repostitorio del frontend `https://github.com/oscarrodriguezbu/debt-management-frontend`
+1. Clonar el `.env.template` y crear el `.env`
+2. Ejecutar ```npm install``` para instalar las dependencias
+3. Ejecutar el comando ```docker compose up -d```
+4. Reconstruir el prisma client ```npm run prisma:migrate:prod```
+5. Ejecutar la aplicación en dev ```npm run dev```
+6. Abrir postman y probar a partir de la url base: ```http://localhost:3000/api/```
+7. (Opcional): Acceder a la base de datos con la data que se encuentra en el archivo .env
+8. Abrir el frontend: ```http://localhost:3000``` o clonar, configurar y correr el repostitorio del frontend ```https://github.com/oscarrodriguezbu/debt-management-frontend```
 
 ## Contexto del reto:
 
